@@ -23,7 +23,7 @@
             <div id="sidebar_split"> </div>
 
     <!-- creatable elements -->
-    <img src="/Kanban-Board/media/textbox.png" alt="TextBox" id="text_drag" draggable="true" ondrop="dropHandler(event)" ondragstart="dragstartHandler(event)">
+    <img src="/Kanban-Board/media/textbox.png" alt="TextBox" id="text_drag" draggable="true" ondragstart="dragstartHandler(event)" >
             <span id="text_drag_text">Create Text</span>
 
         </div>
@@ -31,7 +31,7 @@
 
 <!-- Kanban todo board -->
     <section>
-        <div id="kanban_todo" ondragover="dragoverHandler(event)">
+        <div id="kanban_todo" draggable="true" ondragstart="dragstartHandler(event)" ondragover="dragoverHandler(event)" ondrop="dropHandler(event)">
             <span id="todo_title">To Do</span>
 
             <!-- split title and elements of board -->
