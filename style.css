@@ -69,6 +69,22 @@ body {
     color: white;
 }
 
+/* Global Board Text */
+
+#user_text {
+    height: auto;
+    width: 94%;
+    left: 2%;
+    top: 30px;
+    position: relative;
+
+    border: 1px solid white;
+    background: transparent;
+    color: white;
+
+    overflow: hidden;
+}
+
 /* Kanban todo */
 
 #kanban_todo {

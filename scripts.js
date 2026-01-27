@@ -15,8 +15,11 @@ function dragoverHandler(ev) {
 function dropHandler(ev) {
     // crete div and input field
     const new_div = document.createElement("div");
-    const text_box = document.createElement("input");
+    const text_box = document.createElement("textarea");
     const dropped_on = ev.target
+
+    // set up some ids for the newly created thingies
+    text_box.setAttribute("id", "user_text")
 
     // show some placeholder text so user knows that they can now enter information
     text_box.placeholder = "type here...";
