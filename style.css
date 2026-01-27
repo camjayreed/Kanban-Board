@@ -6,6 +6,7 @@ h1 {
 #split_bar {
     border-style: solid;
     border-color: rgb(255, 255, 255);
+    border-width: 1.5px;
 }
 
 body {
@@ -17,7 +18,7 @@ body {
 #sidebar {
     position: fixed;
     top: 15%;
-    left: 0%;
+    left: .5%;
 
     width: 25%;
     height: 80%;
@@ -32,12 +33,12 @@ body {
     color: white;
 
     position: relative;
-    top: 10px;
-    left: 30%;
+    top: 2%;
+    left: 34%;
 
 
     font-weight: bold;
-    font-size: 20px;
+    font-size: 100%;
 }
 
 #sidebar_split {
@@ -49,6 +50,23 @@ body {
     position: relative;
     top: 3%;
     left: 25%;
+}
+
+/* Sidebar Creatable Elements */
+
+#text_drag {
+    position: relative;
+    top: 4%;
+    left: 5%;
+    scale: 100%;
+}
+
+#text_drag_text {
+    position: relative;
+    top: 6%;
+    left: -13%;
+
+    color: white;
 }
 
 /* Kanban todo */
@@ -71,12 +89,12 @@ body {
     color: white;
 
     position: relative;
-    top: 10px;
+    top: 2%;
     left: 42%;
 
 
     font-weight: bold;
-    font-size: 20px;
+    font-size: 100%;
 }
 
 #kanban_todo_split {
@@ -109,12 +127,12 @@ body {
     color: white;
 
     position: relative;
-    top: 10px;
-    left: 36%;
+    top: 2%;
+    left: 37%;
 
 
     font-weight: bold;
-    font-size: 20px;
+    font-size: 100%;
 }
 
 
@@ -148,12 +166,12 @@ body {
     color: white;
 
     position: relative;
-    top: 10px;
+    top: 2%;
     left: 42%;
 
 
     font-weight: bold;
-    font-size: 20px;
+    font-size: 100%;
 }
 
 

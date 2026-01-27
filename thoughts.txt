@@ -1,0 +1,13 @@
+Sidebar
+--------------
+so for creating elements dynamically instead of attaching buttons everywhere, im thinking create some toggle buttons under our sidebar say where we can
+
+idea #1: 
+    toggle todo board > press create text button > text field will then appear on todo board to be edited.
+    im thinking to guard some breaks of this we should only allow 1 selection button to be toggled at a time, dont even allow more than 1 to be toggled.
+
+Idea #2:
+    use htmls drag and drop api to drag an image of say a text box, to the box of your choice and on drag you will create a text field
+    we may have to create some horizontal divs inside of our boards to give these places to be places, possibly we could highlight the div 
+    your hovering over.
+
