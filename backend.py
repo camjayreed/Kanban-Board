@@ -32,48 +32,48 @@ cur.execute(
 # table for "to do" table data
 cur.execute(
     """CREATE TABLE IF NOT EXISTS todo_table
-        (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, username VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL)"""
+        (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, username VARCHAR(255) NOT NULL, text_info TEXT)"""
 )
 
 # table for "in progress" table data
 cur.execute(
-    """CREATE TABLE IF NOT EXISTS in_progress_table
-        (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, username VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL)"""
+    """CREATE TABLE IF NOT EXISTS todo_table
+        (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, username VARCHAR(255) NOT NULL, text_info TEXT)"""
 )
 
 # table for "done" table data
 cur.execute(
-    """CREATE TABLE IF NOT EXISTS done_table
-        (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, username VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL)"""
+    """CREATE TABLE IF NOT EXISTS todo_table
+        (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, username VARCHAR(255) NOT NULL, text_info TEXT)"""
 )
 
 # make api endpoints
 ##########################
 
 # make a way to keep track of our current logged in user
-@app.route("/placeholder", methods=["POST"])
-def placeholder():
+@app.route("/current_user", methods=["POST"])
+def current_user():
     pass
 
 # make this a table where we store the data for our "to do" table, associate all the data with the current logged in user.
 # repeat this table 3 times for our other ones
-@app.route("/placeholder", methods=["POST"])
-def placeholder():
+@app.route("/todo_table", methods=["POST"])
+def store_todo():
     pass
 
 # table for storing "in progress" tasks
-@app.route("/placeholder", methods=["POST"])
-def placeholder():
+@app.route("/in_progress_table", methods=["POST"])
+def store_in_progress():
     pass
 
 # table for storing "done" tasks
-@app.route("/placeholder", methods=["POST"])
-def placeholder():
+@app.route("/done_table", methods=["POST"])
+def store_done():
     pass
 
 # fetch all 3 tables saved data for our current user and return it to the front end for processing
-@app.route("/placeholder", methods=["POST"])
-def placeholder():
+@app.route("/fetch_tables", methods=["POST"])
+def fetch_tables():
     pass
 
 
