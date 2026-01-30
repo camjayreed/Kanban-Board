@@ -57,14 +57,14 @@ body {
 #text_drag {
     position: fixed;
     top: 22%;
-    left: 5%;
+    left: 2%;
     scale: 100%;
 }
 
 #text_drag_text {
-    position: fixed;
-    top: 29%;
-    left: 4.3%;
+    position: relative;
+    top: 13%;
+    left: 2.5%;
 
     color: white;
 }

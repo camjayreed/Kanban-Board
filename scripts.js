@@ -3,7 +3,9 @@ function dragstartHandler(ev) {
     // figure out what the object is so we know what to do when we drop it
     ev.dataTransfer.setData("text/plain", ev.target.src);
     console.log(ev.target.id)
-    dragged_obj = ev.target.id
+
+    // on drag get current logged in user to append to our text box div
+        dragged_obj = ev.target.id
     
     return dragged_obj
 }
@@ -23,6 +25,7 @@ if (dragged_obj == "text_drag") {
     const new_div = document.createElement("div");
     const text_box = document.createElement("textarea");
     const dropped_on = ev.target
+    // make a little box that says the name of the user
 
     // set up some ids for the newly created thingies
     text_box.setAttribute("id", "user_text")
@@ -34,6 +37,8 @@ if (dragged_obj == "text_drag") {
     dropped_on.appendChild(new_div);
     new_div.appendChild(text_box);
 }}
+
+// need to load all of our users posts when logged in, also need a way to delete posts
 
 
 // right now theres a bug where if we drag ANYTHING onto these boxes we get a text box, this is not the intention i had
