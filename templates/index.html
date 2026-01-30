@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scuffed Kanban</title>
-    <link rel="stylesheet" href="/Kanban-Board/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 
 <!-- Main Header -->
     <h1>Camerons Scuffed Kanban Board!!</h1>
 
-    <a href="/Kanban-Board/login.html">Login</a>
-    <a href="/Kanban-Board/register.html">Register</a>
+    <a href="{{ url_for('login') }}" id="login_link">Login</a>
+    <a href="{{ url_for('register') }}" id="register_link">Register</a>
 
 <!-- Little bar for splitting header and elements -->
     <div id="split_bar"></div>
@@ -26,7 +26,7 @@
             <div id="sidebar_split"> </div>
 
     <!-- creatable elements -->
-    <img src="/Kanban-Board/media/textbox.png" alt="TextBox" id="text_drag" draggable="true" ondragstart="dragstartHandler(event)" >
+    <img src="{{ url_for('static', filename='textbox.png') }}" alt="TextBox" id="text_drag" draggable="true" ondragstart="dragstartHandler(event)" >
             <span id="text_drag_text">Create Text</span>
 
         </div>
@@ -68,6 +68,6 @@
         </div>
     </section>
 
-    <script src="/Kanban-Board/scripts.js"></script>
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
 </body>
 </html>
