@@ -55,16 +55,16 @@ body {
 /* Sidebar Creatable Elements */
 
 #text_drag {
-    position: relative;
-    top: 4%;
+    position: fixed;
+    top: 22%;
     left: 5%;
     scale: 100%;
 }
 
 #text_drag_text {
-    position: relative;
-    top: 6%;
-    left: -13%;
+    position: fixed;
+    top: 29%;
+    left: 4.3%;
 
     color: white;
 }

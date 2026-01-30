@@ -11,3 +11,4 @@ Idea #2:
     we may have to create some horizontal divs inside of our boards to give these places to be places, possibly we could highlight the div 
     your hovering over.
 
+

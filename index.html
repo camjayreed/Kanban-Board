@@ -43,7 +43,7 @@
 
 <!-- Kanban in progress board -->
     <section>
-        <div id="kanban_doing">
+        <div id="kanban_doing" draggable="true" ondragstart="dragstartHandler(event)" ondragover="dragoverHandler(event)" ondrop="dropHandler(event)">
             <span id="doing_title">In Progress</span>
             
             <!-- split title and elements of board -->
@@ -55,7 +55,7 @@
 
 <!-- Kanban completed board -->
     <section>
-        <div id="kanban_done">
+        <div id="kanban_done" draggable="true" ondragstart="dragstartHandler(event)" ondragover="dragoverHandler(event)" ondrop="dropHandler(event)">
             <span id="done_title">Done</span>
             
             <!-- split title and elements of board -->
