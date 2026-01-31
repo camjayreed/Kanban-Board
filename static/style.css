@@ -87,7 +87,7 @@ a {
 
 /* Global Board Text */
 
-#user_text {
+.user_text {
     height: auto;
     width: 94%;
     left: 2%;

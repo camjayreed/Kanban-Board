@@ -9,7 +9,7 @@
 <body onload="check_cookie()">
 
 <!-- Main Header -->
-    <h1 id="h1">Camerons Scuffed Kanban Board!!</h1>
+    <h1 id="h1">scuffed kanban board!!</h1>
 
     <a href="{{ url_for('login_load') }}" id="login_link">Login</a>
     <a href="{{ url_for('register_load') }}" id="register_link">Register</a>
@@ -34,7 +34,7 @@
 
 <!-- Kanban todo board -->
     <section>
-        <div id="kanban_todo" draggable="true" ondragstart="dragstartHandler(event)" ondragover="dragoverHandler(event)" ondrop="dropHandler(event)">
+        <div class="column" data-column="todo" id="kanban_todo" draggable="true" ondragstart="dragstartHandler(event)" ondragover="dragoverHandler(event)" ondrop="dropHandler(event)">
             <span id="todo_title">To Do</span>
 
             <!-- split title and elements of board -->
@@ -46,7 +46,7 @@
 
 <!-- Kanban in progress board -->
     <section>
-        <div id="kanban_doing" draggable="true" ondragstart="dragstartHandler(event)" ondragover="dragoverHandler(event)" ondrop="dropHandler(event)">
+        <div class="column" data-column="doing" id="kanban_doing" draggable="true" ondragstart="dragstartHandler(event)" ondragover="dragoverHandler(event)" ondrop="dropHandler(event)">
             <span id="doing_title">In Progress</span>
             
             <!-- split title and elements of board -->
@@ -58,7 +58,7 @@
 
 <!-- Kanban completed board -->
     <section>
-        <div id="kanban_done" draggable="true" ondragstart="dragstartHandler(event)" ondragover="dragoverHandler(event)" ondrop="dropHandler(event)">
+        <div class="column" data-column="done" id="kanban_done" draggable="true" ondragstart="dragstartHandler(event)" ondragover="dragoverHandler(event)" ondrop="dropHandler(event)">
             <span id="done_title">Done</span>
             
             <!-- split title and elements of board -->
