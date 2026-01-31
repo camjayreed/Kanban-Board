@@ -54,43 +54,98 @@ cur.execute(
 def index():
     return render_template("index.html")
 
-@app.route("/login", methods=["GET"])
-def login():
-    return render_template("login.html")
-
 @app.route("/register", methods=["GET"])
-def register():
+def register_load():
     return render_template("register.html")
+
+@app.route("/login", methods=["GET"])
+def login_load():
+    return render_template("login.html")
 
 # make api endpoints
 ##########################
 
+@app.route("/register_user", methods=["POST"])
+def register():
+    user = request.get_json()
+
+    cur.execute(f"SELECT * FROM users WHERE username = '{user['username']}'")
+    rows = cur.fetchall()
+    user_fixed = tuple(user.values())
+
+    for x in rows:
+        if user_fixed == x[1:]:
+            print("user already exists")
+            return {"status": "exists"}, 401
+
+    else:
+        password = user["password"]
+        bytes = password.encode("utf-8")
+        salt = bcrypt.gensalt()
+        hash = bcrypt.hashpw(bytes, salt)
+
+        cur.execute(
+            "INSERT INTO users (username, password) VALUES (?, ?)",
+            (user["username"], hash),
+        )
+        con.commit()
+
+        for row in cur.execute("""SELECT * FROM  users"""):
+            print(row)
+
+        return {"status": "ok"}, 200
+
+@app.route("/login_user", methods=["POST"])
+def login():
+    login_real = request.get_json()
+
+    cur.execute("SELECT * FROM users WHERE username = ?", (login_real["username"],))
+    rows = cur.fetchall()
+    user_fixed = tuple(login_real.values())
+
+    for x in rows:
+        if user_fixed[0] == x[1] and bcrypt.checkpw(
+            user_fixed[1].encode("utf-8"), x[2]
+        ):
+            current_user = x[1]
+            print("user logged in")
+            return {"status": "ok"}, 200
+    else:
+        return (
+            jsonify({"status": "error", "message": "Invalid username or password"}),
+            401,
+        )
+
 # make a way to keep track of our current logged in user
 @app.route("/current_user", methods=["POST"])
 def current_user():
-    pass
+
+    return {"status": "ok"}, 200
 
 # make this a table where we store the data for our "to do" table, associate all the data with the current logged in user.
 # repeat this table 3 times for our other ones
 @app.route("/todo_table", methods=["POST"])
 def store_todo():
-    pass
+    
+    return {"status": "ok"}, 200
 
 # table for storing "in progress" tasks
 @app.route("/in_progress_table", methods=["POST"])
 def store_in_progress():
-    pass
+    
+    return {"status": "ok"}, 200
 
 # table for storing "done" tasks
 @app.route("/done_table", methods=["POST"])
 def store_done():
-    pass
+    
+    return {"status": "ok"}, 200
 
 # fetch all 3 tables saved data for our current user and return it to the front end for processing
 @app.route("/fetch_tables", methods=["POST"])
 def fetch_tables():
-    pass
-
+    
+    return {"status": "ok"}, 200
 
 # what to do on running the program
 ##########################

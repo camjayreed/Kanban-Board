@@ -6,13 +6,13 @@
     <title>Scuffed Kanban</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body>
+<body onload="check_cookie()">
 
 <!-- Main Header -->
     <h1>Camerons Scuffed Kanban Board!!</h1>
 
-    <a href="{{ url_for('login') }}" id="login_link">Login</a>
-    <a href="{{ url_for('register') }}" id="register_link">Register</a>
+    <a href="{{ url_for('login_load') }}" id="login_link">Login</a>
+    <a href="{{ url_for('register_load') }}" id="register_link">Register</a>
 
 <!-- Little bar for splitting header and elements -->
     <div id="split_bar"></div>

@@ -38,7 +38,13 @@ if (dragged_obj == "text_drag") {
     new_div.appendChild(text_box);
 }}
 
-// need to load all of our users posts when logged in, also need a way to delete posts
-
-
-// right now theres a bug where if we drag ANYTHING onto these boxes we get a text box, this is not the intention i had
+// need to load all of our users tables when logged in, also need a way to delete tables
+function check_cookie() {
+    if (document.cookie != `current_user=${""}`) {
+        console.log("user detected");
+    } else {
+        console.log("no user found")
+    }
+        // lets also change the name of the h1 header to include the users name
+}
+// if user cookie has data, fetch all tables
