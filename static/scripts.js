@@ -38,10 +38,26 @@ if (dragged_obj == "text_drag") {
     new_div.appendChild(text_box);
 }}
 
+// function for checking if a cookie exists
+// (i stole this mwahahahaha)
+function get_cookie(name) {
+    const cookies = document.cookie.split("; ");
+
+    for (const cookie of cookies) {
+        const [key, value] = cookie.split("=");
+        if (key === name) {
+            return value;
+        }
+    }
+    return null;
+}
+
 // need to load all of our users tables when logged in, also need a way to delete tables
 function check_cookie() {
-    if (document.cookie != `current_user=${""}`) {
+    if (get_cookie("current_user")) {
         console.log("user detected");
+        document.getElementById("h1").innerText = `${username}'s Scuffed Kanban Board!!`;
+
     } else {
         console.log("no user found")
     }

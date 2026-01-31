@@ -1,6 +1,8 @@
 const login = document.getElementById("login_submit")
 login.addEventListener("click", login_user)
 
+const logged_user = null
+
 async function login_user() {
     const username = document.getElementById("login_user").value;
     const password = document.getElementById("login_pass").value;
@@ -25,6 +27,8 @@ async function login_user() {
     if (data.status === "ok") {
         // set cookie and let them in
         document.cookie = `current_user=${username}`
+        logged_user = username
+
         window.location.replace("/");
     } else {
         // reject login
