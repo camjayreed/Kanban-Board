@@ -20,6 +20,8 @@ print("USING DB FILE:", DB_PATH)
 con = sqlite3.connect(DB_PATH, check_same_thread=False)
 cur = con.cursor()
 
+current_user = None
+
 # make db tables
 ##########################
 
@@ -29,21 +31,9 @@ cur.execute(
         (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, username VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL)"""
 )
 
-# table for "to do" table data
+# table for all tables data
 cur.execute(
-    """CREATE TABLE IF NOT EXISTS todo_table
-        (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, username VARCHAR(255) NOT NULL, text_info TEXT)"""
-)
-
-# table for "in progress" table data
-cur.execute(
-    """CREATE TABLE IF NOT EXISTS todo_table
-        (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, username VARCHAR(255) NOT NULL, text_info TEXT)"""
-)
-
-# table for "done" table data
-cur.execute(
-    """CREATE TABLE IF NOT EXISTS todo_table
+    """CREATE TABLE IF NOT EXISTS tables
         (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, username VARCHAR(255) NOT NULL, text_info TEXT)"""
 )
 
@@ -102,6 +92,7 @@ def login():
     cur.execute("SELECT * FROM users WHERE username = ?", (login_real["username"],))
     rows = cur.fetchall()
     user_fixed = tuple(login_real.values())
+    current_user = user_fixed[0]
 
     for x in rows:
         if user_fixed[0] == x[1] and bcrypt.checkpw(
@@ -124,20 +115,16 @@ def current_user():
 
 # make this a table where we store the data for our "to do" table, associate all the data with the current logged in user.
 # repeat this table 3 times for our other ones
-@app.route("/todo_table", methods=["POST"])
+@app.route("/save_tables", methods=["POST"])
 def store_todo():
-    
-    return {"status": "ok"}, 200
+    data = request.get_json()
 
-# table for storing "in progress" tasks
-@app.route("/in_progress_table", methods=["POST"])
-def store_in_progress():
-    
-    return {"status": "ok"}, 200
+    cur.execute(
+        "INSERT INTO tables (username, text_info) VALUES (?, ?)",
+        (current_user, data),
+    )
 
-# table for storing "done" tasks
-@app.route("/done_table", methods=["POST"])
-def store_done():
+    print(data)
     
     return {"status": "ok"}, 200
 

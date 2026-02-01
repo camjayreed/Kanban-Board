@@ -2,6 +2,7 @@ const login = document.getElementById("login_submit")
 login.addEventListener("click", login_user)
 
 let uuid = self.crypto.randomUUID();
+window.username = null;
 
 async function login_user() {
     const username = document.getElementById("login_user").value;

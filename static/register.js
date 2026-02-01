@@ -2,7 +2,7 @@ const register = document.getElementById("register_submit")
 
 register.addEventListener("click", register_user)
 
-function register_user() {
+async function register_user() {
     const username = document.getElementById("register_user").value;
     const password = document.getElementById("register_pass").value;
 
@@ -11,11 +11,13 @@ function register_user() {
     password: password,
     };
 
-    fetch("http://127.0.0.1:5000/register_user", {
+    const response = await fetch("http://127.0.0.1:5000/register_user", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(login),
     });
+
+    const data = await response.json();
 
     if (data.status === "ok") {
         // let user in

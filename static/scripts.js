@@ -81,6 +81,8 @@ function check_cookie() {
         console.log("user detected");
         document.getElementById("h1").innerText = `${get_cookie_value("current_user")}'s scuffed kanban board`
 
+        fetch_tables()
+
     } else {
         console.log("no user found")
     }
@@ -88,9 +90,11 @@ function check_cookie() {
 }
 // if user cookie has data, fetch all tables
 
+// i pretty much thought of this approach, but needed gpt to help me implement it
+// it gave me the advice to use classes and data-columns for the tables.
+// it also wrote how to query them, i definitly dont fully understand the approach so i will look into it after my timer is finished (im a chud :{ )
 function save_tables() {
-    // on runnng this we should run through all text boxes of each table individually, then append all boxes within a table to a list
-    // this way we have a way to tell what divs go to what box, for later display
+
     const todo_text = [];
     const doing_text = [];
     const done_text = [];
@@ -104,13 +108,78 @@ function save_tables() {
     // grab the done table
     document.querySelector(".column[data-column='done']").querySelectorAll(".user_text").forEach(t => done_text.push(t.value));
 
-    console.log(todo_text);
-    console.log(doing_text);
-    console.log(done_text);
+
+    const user_tables = [todo_text, [doing_text],[done_text]]
+
+    console.log(user_tables)
+    // so after collecting all the tables, we need to merge them into 1 big sorted nested array for later parsing
+    // we also need to include the username of the individual whos table it is so we know who to store and pull tables from
+
+    fetch("http://127.0.0.1:5000/save_tables", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(user_tables, window.username),
+    });
 }
 
 function fetch_tables() {
-    // placeholder
+
+    // need to do an api fetch to get users tabledata
+
+    // placeholder data to test
+    //const todo_text = ['cameron', 'hates', 'monkeys'];
+    //const doing_text = ['caenen', 'is', 'mean'];
+    //const done_text = ['barrett', 'loves', 'monkeys and bananas'];
+
+    const user_tables = [todo_text, doing_text, done_text];
+
+    user_tables.forEach((tables, index) => {
+        tables.forEach(text => {
+            if (index === 0) {
+                const new_div = document.createElement("div");
+                const text_box = document.createElement("textarea");
+
+                new_div.setAttribute("class", "card")
+                new_div.setAttribute("data-card-id", `${uuid}`)
+                text_box.setAttribute("class", "user_text")
+
+                text_box.innerText = `${text}`;
+
+                kanban_todo.appendChild(new_div);
+                new_div.appendChild(text_box);
+
+            } 
+            if (index === 1) {
+                const new_div = document.createElement("div");
+                const text_box = document.createElement("textarea");
+
+                new_div.setAttribute("class", "card")
+                new_div.setAttribute("data-card-id", `${uuid}`)
+                text_box.setAttribute("class", "user_text")
+
+                text_box.innerText = `${text}`;
+
+                kanban_doing.appendChild(new_div);
+                new_div.appendChild(text_box);
+
+            }
+            if (index === 2) {
+                const new_div = document.createElement("div");
+                const text_box = document.createElement("textarea");
+
+                new_div.setAttribute("class", "card")
+                new_div.setAttribute("data-card-id", `${uuid}`)
+                text_box.setAttribute("class", "user_text")
+
+                text_box.innerText = `${text}`;
+
+                kanban_done.appendChild(new_div);
+                new_div.appendChild(text_box);
+
+            }
+        
+    })});
+
 }
 
 document.getElementById("test_button").addEventListener("click", save_tables)

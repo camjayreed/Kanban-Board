@@ -217,3 +217,15 @@ a {
     top: 3%;
     left: 25%;
 }
+
+#test_button {
+    position: fixed;
+    top: 8.5%;
+    left: 51.6%;
+}
+
+#save_button {
+    position: fixed;
+    top: 8.5%;
+    left: 44.3%;
+}
