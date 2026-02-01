@@ -91,8 +91,26 @@ function check_cookie() {
 function save_tables() {
     // on runnng this we should run through all text boxes of each table individually, then append all boxes within a table to a list
     // this way we have a way to tell what divs go to what box, for later display
+    const todo_text = [];
+    const doing_text = [];
+    const done_text = [];
+
+    // basically take all the text boxes from our table and save them to an array
+    document.querySelector(".column[data-column='todo']").querySelectorAll(".user_text").forEach(t => todo_text.push(t.value));
+    
+    // grab the doing table
+    document.querySelector(".column[data-column='doing']").querySelectorAll(".user_text").forEach(t => doing_text.push(t.value));
+
+    // grab the done table
+    document.querySelector(".column[data-column='done']").querySelectorAll(".user_text").forEach(t => done_text.push(t.value));
+
+    console.log(todo_text);
+    console.log(doing_text);
+    console.log(done_text);
 }
 
 function fetch_tables() {
     // placeholder
 }
+
+document.getElementById("test_button").addEventListener("click", save_tables)
